@@ -1,0 +1,102 @@
+buildscript {
+    repositories {
+        maven { url = 'https://files.minecraftforge.net/maven' }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+    }
+}
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+
+version = "${minecraft_version}-${mod_version}"
+group = 'com.teamaurora.depths_and_reefs'
+archivesBaseName = 'Depths-and-Reefs'
+
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+
+minecraft {
+    mappings channel: 'snapshot', version: "${mappings_version}"
+    //accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+            property 'mixin.env.disableRefMap', 'true'
+
+            mods {
+                depths_and_reefs {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+            property 'mixin.env.disableRefMap', 'true'
+
+            mods {
+                depths_and_reefs {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.console.level', 'debug'
+
+            args '--mod', 'depths_and_reefs', '--all', '--output', file('src/generated/resources/')
+
+            mods {
+                depths_and_reefs {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+jar {
+    manifest {
+        attributes([
+                "Specification-Title": "Depths and Reefs",
+                "Specification-Vendor": "Team Aurora",
+                "Specification-Version": "1",
+                "Implementation-Title": project.name,
+                "Implementation-Version": "${version}",
+                "Implementation-Vendor": "Team Aurora",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+
+    // These are not direct dependencies, and should not use the 'implementation' scope
+    // Use 'runtimeOnly' for mods that should only be included on client run rather than being integrated into the project.
+    runtimeOnly fg.deobf("curse.maven:jei-238222:3157864")
+    runtimeOnly fg.deobf("curse.maven:autoreglib-250363:3128555")
+    runtimeOnly fg.deobf("curse.maven:quark-243121:3186934")
+
+    implementation fg.deobf("curse.maven:abnormals-core-382216:3157757")
+    implementation fg.deobf("curse.maven:buzzier-bees-355458:3154937")
+}
+
+repositories {
+    maven {
+        url = "https://www.cursemaven.com"
+    }
+}
