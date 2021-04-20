@@ -21,5 +21,7 @@ public class ClientRegister {
 
     public static void setupRenderLayer() {
         RenderTypeLookup.setRenderLayer(DRBlocks.SEA_ALGAE.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DRBlocks.ULVA_BUSH.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DRBlocks.ULVA_CARPET.get(), RenderType.getCutout());
     }
 }

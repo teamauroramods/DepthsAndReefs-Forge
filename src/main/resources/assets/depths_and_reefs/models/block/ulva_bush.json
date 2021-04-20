@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "depths_and_reefs:block/ulva_bush"
+  }
+}

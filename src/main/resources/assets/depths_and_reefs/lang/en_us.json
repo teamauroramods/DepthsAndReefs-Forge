@@ -6,5 +6,10 @@
 
   "block.depths_and_reefs.seagrass_patch": "Seagrass Patch",
   "block.depths_and_reefs.sea_algae_sand": "Sea Algae Sand",
-  "block.depths_and_reefs.sea_algae": "Sea Algae"
+  "block.depths_and_reefs.sea_algae": "Sea Algae",
+
+  "block.depths_and_reefs.ulva_bush": "Ulva Bush",
+  "block.depths_and_reefs.ulva_carpet": "Ulva Carpet",
+  "item.depths_and_reefs.ulva": "Ulva",
+  "item.depths_and_reefs.dried_ulva": "Dried Ulva"
 }
