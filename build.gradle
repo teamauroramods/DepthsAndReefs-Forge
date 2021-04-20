@@ -85,18 +85,19 @@ jar {
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
-    // These are not direct dependencies, and should not use the 'implementation' scope
-    // Use 'runtimeOnly' for mods that should only be included on client run rather than being integrated into the project.
     runtimeOnly fg.deobf("curse.maven:jei-238222:3157864")
     runtimeOnly fg.deobf("curse.maven:autoreglib-250363:3128555")
     runtimeOnly fg.deobf("curse.maven:quark-243121:3186934")
+    runtimeOnly fg.deobf("curse.maven:buzzier-bees-355458:3154937")
 
-    implementation fg.deobf("curse.maven:abnormals-core-382216:3157757")
-    implementation fg.deobf("curse.maven:buzzier-bees-355458:3154937")
+    implementation fg.deobf("com.minecraftabnormals:abnormals-core:${minecraft_version}-${ac_version}")
 }
 
 repositories {
     maven {
         url = "https://www.cursemaven.com"
+    }
+    maven {
+        url "https://maven.jaackson.me"
     }
 }
