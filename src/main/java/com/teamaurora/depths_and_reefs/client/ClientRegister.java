@@ -1,6 +1,9 @@
 package com.teamaurora.depths_and_reefs.client;
 
 import com.teamaurora.depths_and_reefs.core.DepthsAndReefs;
+import com.teamaurora.depths_and_reefs.core.registry.DRBlocks;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -12,7 +15,11 @@ public class ClientRegister {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
-
+            setupRenderLayer();
         });
+    }
+
+    public static void setupRenderLayer() {
+        RenderTypeLookup.setRenderLayer(DRBlocks.SEA_ALGAE.get(), RenderType.getCutout());
     }
 }

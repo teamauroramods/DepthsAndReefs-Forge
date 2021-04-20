@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "depths_and_reefs:block/sea_algae"
+  }
+}
