@@ -25,7 +25,7 @@ public class AlgaePatchFeature extends Feature<NoFeatureConfig> {
             for (int y = -2; y <= 2; y++) {
                 for (int z = -2; z <= 2; z++) {
                     BlockPos pos = position.add(x, y, z);
-                    if (position.withinDistance(pos, 2.1F)) {
+                    if (Math.abs(x) != 2 || Math.abs(z) != 2) {
                         if (worldIn.getBlockState(pos).isIn(Blocks.SAND)) {
                             count++;
                             worldIn.setBlockState(pos, DRBlocks.SEA_ALGAE_SAND.get().getDefaultState(), 3);

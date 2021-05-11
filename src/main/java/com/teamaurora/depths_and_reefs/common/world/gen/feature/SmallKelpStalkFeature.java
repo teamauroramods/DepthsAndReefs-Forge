@@ -20,7 +20,7 @@ public class SmallKelpStalkFeature extends Feature<NoFeatureConfig> {
         if (!worldIn.getBlockState(position).isIn(Blocks.WATER)) {
             return false;
         }
-        int height = rand.nextInt(4) + 4;
+        int height = rand.nextInt(3) + 4;
         for (int i = 0; i < height; i++) {
             if (worldIn.getBlockState(position.up(i)).isIn(Blocks.WATER)) {
                 if (worldIn.getBlockState(position.up(i-1)).isIn(Blocks.KELP)) {

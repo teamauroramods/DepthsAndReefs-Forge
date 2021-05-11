@@ -44,13 +44,13 @@ public class DRFeatures {
 
         public static final ConfiguredFeature<BlockStateFeatureConfig, ?> CONGLOMERATE_BOULDER = LARGE_BOULDER.get().withConfiguration(Configs.CONGLOMERATE_CONFIG);
 
-        public static final ConfiguredFeature<?, ?> SEAGRASS_PATCH_DECORATED = SEAGRASS_PATCH.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.35F, 1)));
-        public static final ConfiguredFeature<?, ?> ALGAE_PATCH_DECORATED = ALGAE_PATCH.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 0.25F, 1)));
-        public static final ConfiguredFeature<?, ?> ULVA_PATCH_DECORATED = ULVA_PATCH.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0.15F, 2)));
-        public static final ConfiguredFeature<?, ?> SMALL_KELP_DECORATED = SMALL_KELP_STALK.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(2)));
-        public static final ConfiguredFeature<?, ?> CONGLOMERATE_BOULDER_DECORATED = CONGLOMERATE_BOULDER.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 1)));
+        public static final ConfiguredFeature<?, ?> SEAGRASS_PATCH_DECORATED = SEAGRASS_PATCH.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 0.35F, 1)));
+        public static final ConfiguredFeature<?, ?> ALGAE_PATCH_DECORATED = ALGAE_PATCH.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(3, 0.25F, 1)));
+        public static final ConfiguredFeature<?, ?> ULVA_PATCH_DECORATED = ULVA_PATCH.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(0, 0.35F, 3)));
+        public static final ConfiguredFeature<?, ?> SMALL_KELP_DECORATED = SMALL_KELP_STALK.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.75F, 1)));
+        public static final ConfiguredFeature<?, ?> CONGLOMERATE_BOULDER_DECORATED = CONGLOMERATE_BOULDER.withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 1)));
 
-        public static final ConfiguredFeature<?, ?> SPARSE_SEAGRASS = Feature.SEAGRASS.withConfiguration(new ProbabilityConfig(0.3F)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(8, 0.33F, 4)));
+        public static final ConfiguredFeature<?, ?> SPARSE_SEAGRASS = Feature.SEAGRASS.withConfiguration(new ProbabilityConfig(0.6F)).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(8, 0.33F, 4)));
 
         private static <FC extends IFeatureConfig> void register(String name, ConfiguredFeature<FC, ?> configuredFeature) {
             Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, new ResourceLocation(DepthsAndReefs.MODID, name), configuredFeature);

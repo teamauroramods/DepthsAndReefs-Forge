@@ -23,7 +23,9 @@ public class LargeBoulderFeature extends Feature<BlockStateFeatureConfig> {
 
         count += generateSmallBoulder(worldIn, rand, pos, config.state);
         for (int i = 0; i < 4; i++) {
-            count += generateSmallBoulder(worldIn, rand, pos.offset(Direction.byHorizontalIndex(i)), config.state);
+            if (rand.nextBoolean()) {
+                count += generateSmallBoulder(worldIn, rand, pos.offset(Direction.byHorizontalIndex(i)), config.state);
+            }
         }
 
         return count > 0;
@@ -43,8 +45,16 @@ public class LargeBoulderFeature extends Feature<BlockStateFeatureConfig> {
                         worldIn.setBlockState(newPos, state, 3);
                         count++;
                     }
+                    if (worldIn.getBlockState(newPos.down()).isIn(Blocks.WATER)) {
+                        worldIn.setBlockState(newPos.down(), state, 3);
+                        count++;
+                    }
                 }
             }
+        }
+        if (worldIn.getBlockState(pos.down(2)).isIn(Blocks.WATER)) {
+            worldIn.setBlockState(pos.down(2), state, 3);
+            count++;
         }
         return count;
     }

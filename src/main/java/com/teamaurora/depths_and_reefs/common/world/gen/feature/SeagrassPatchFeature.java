@@ -27,7 +27,7 @@ public class SeagrassPatchFeature extends Feature<NoFeatureConfig> {
             for (int y = -3; y <= 3; y++) {
                 for (int z = -3; z <= 3; z++) {
                     BlockPos pos = position.add(x, y, z);
-                    if (position.withinDistance(pos, 3.1F)) {
+                    if ((Math.abs(x) != 3 || Math.abs(z) != 3) && !((Math.abs(x) == 3 && Math.abs(z) == 2) || (Math.abs(x) == 2 && Math.abs(z) == 3))) {
                         if (worldIn.getBlockState(pos).isIn(Blocks.SAND)) {
                             count++;
                             worldIn.setBlockState(pos, DRBlocks.SEAGRASS_PATCH.get().getDefaultState(), 3);

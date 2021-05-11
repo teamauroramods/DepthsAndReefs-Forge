@@ -40,9 +40,9 @@ public class DRBiomeFeatures {
     public static void withSeagrassBedsFeatures(BiomeGenerationSettingsBuilder builder, MobSpawnInfoBuilder spawns) {
         addBaseOceanFeatures(builder, false, true, false);
 
+        builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DRFeatures.Configured.ULVA_PATCH_DECORATED);
         builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DRFeatures.Configured.SEAGRASS_PATCH_DECORATED);
         builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DRFeatures.Configured.ALGAE_PATCH_DECORATED);
-        builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DRFeatures.Configured.ULVA_PATCH_DECORATED);
         builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DRFeatures.Configured.SMALL_KELP_DECORATED);
         builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DRFeatures.Configured.SPARSE_SEAGRASS);
         builder.withFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, DRFeatures.Configured.CONGLOMERATE_BOULDER_DECORATED);
