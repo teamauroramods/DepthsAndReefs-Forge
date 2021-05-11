@@ -1,4 +1,4 @@
-package com.teamaurora.depths_and_reefs;
+package com.teamaurora.depths_and_reefs.common.block;
 
 import com.teamaurora.depths_and_reefs.common.block.UlvaBushBlock;
 import net.minecraft.block.Block;

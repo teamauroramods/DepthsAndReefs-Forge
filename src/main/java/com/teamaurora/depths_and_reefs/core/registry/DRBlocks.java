@@ -1,7 +1,7 @@
 package com.teamaurora.depths_and_reefs.core.registry;
 
 import com.minecraftabnormals.abnormals_core.core.util.registry.BlockSubRegistryHelper;
-import com.teamaurora.depths_and_reefs.UlvaCarpetBlock;
+import com.teamaurora.depths_and_reefs.common.block.UlvaCarpetBlock;
 import com.teamaurora.depths_and_reefs.common.block.SeaAlgaeBlock;
 import com.teamaurora.depths_and_reefs.common.block.UlvaBushBlock;
 import com.teamaurora.depths_and_reefs.core.DepthsAndReefs;
