@@ -11,5 +11,11 @@
   "block.depths_and_reefs.ulva_bush": "Ulva Bush",
   "block.depths_and_reefs.ulva_carpet": "Ulva Carpet",
   "item.depths_and_reefs.ulva": "Ulva",
-  "item.depths_and_reefs.dried_ulva": "Dried Ulva"
+  "item.depths_and_reefs.dried_ulva": "Dried Ulva",
+
+  "block.depths_and_reefs.red_starfish": "Red Starfish",
+  "block.depths_and_reefs.purple_starfish": "Purple Starfish",
+  "block.depths_and_reefs.pink_starfish": "Pink Starfish",
+  "block.depths_and_reefs.blue_starfish": "Blue Starfish",
+  "block.depths_and_reefs.yellow_starfish": "Yellow Starfish"
 }

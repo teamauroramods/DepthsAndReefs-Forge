@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "depths_and_reefs:block/blue_starfish"
+  }
+}

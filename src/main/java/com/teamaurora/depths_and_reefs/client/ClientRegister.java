@@ -23,5 +23,11 @@ public class ClientRegister {
         RenderTypeLookup.setRenderLayer(DRBlocks.SEA_ALGAE.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DRBlocks.ULVA_BUSH.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(DRBlocks.ULVA_CARPET.get(), RenderType.getCutout());
+
+        RenderTypeLookup.setRenderLayer(DRBlocks.RED_STARFISH.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DRBlocks.YELLOW_STARFISH.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DRBlocks.BLUE_STARFISH.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DRBlocks.PURPLE_STARFISH.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(DRBlocks.PINK_STARFISH.get(), RenderType.getCutout());
     }
 }

@@ -1,0 +1,16 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "particle": "depths_and_reefs:block/red_starfish",
+    "texture": "depths_and_reefs:block/red_starfish"
+  },
+  "elements": [
+    {   "from": [ 0, 0.1, 0 ],
+      "to": [ 16, 0.1, 16 ],
+      "faces": {
+        "down":  { "uv": [ 16, 16, 0,  0 ], "texture": "#texture", "tintindex": 0 },
+        "up":    { "uv": [ 16,  0, 0, 16 ], "texture": "#texture", "tintindex": 0 }
+      }
+    }
+  ]
+}

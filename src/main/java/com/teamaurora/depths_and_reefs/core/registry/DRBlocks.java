@@ -1,6 +1,7 @@
 package com.teamaurora.depths_and_reefs.core.registry;
 
 import com.minecraftabnormals.abnormals_core.core.util.registry.BlockSubRegistryHelper;
+import com.teamaurora.depths_and_reefs.common.block.StarfishBlock;
 import com.teamaurora.depths_and_reefs.common.block.UlvaCarpetBlock;
 import com.teamaurora.depths_and_reefs.common.block.SeaAlgaeBlock;
 import com.teamaurora.depths_and_reefs.common.block.UlvaBushBlock;
@@ -36,11 +37,20 @@ public class DRBlocks {
     public static final RegistryObject<Block> ULVA_BUSH = HELPER.createBlockNoItem("ulva_bush", ()->new UlvaBushBlock(Properties.ULVA));
     public static final RegistryObject<Block> ULVA_CARPET = HELPER.createBlock("ulva_carpet", ()->new UlvaCarpetBlock(Properties.ULVA), ItemGroup.DECORATIONS);
 
+    // starshit
+    public static final RegistryObject<Block> RED_STARFISH = HELPER.createBlock("red_starfish", ()->new StarfishBlock(Properties.STARFIS), ItemGroup.DECORATIONS);
+    public static final RegistryObject<Block> YELLOW_STARFISH = HELPER.createBlock("yellow_starfish", ()->new StarfishBlock(Properties.STARFIS), ItemGroup.DECORATIONS);
+    public static final RegistryObject<Block> BLUE_STARFISH = HELPER.createBlock("blue_starfish", ()->new StarfishBlock(Properties.STARFIS), ItemGroup.DECORATIONS);
+    public static final RegistryObject<Block> PURPLE_STARFISH = HELPER.createBlock("purple_starfish", ()->new StarfishBlock(Properties.STARFIS), ItemGroup.DECORATIONS);
+    public static final RegistryObject<Block> PINK_STARFISH = HELPER.createBlock("pink_starfish", ()->new StarfishBlock(Properties.STARFIS), ItemGroup.DECORATIONS);
+
     public static class Properties {
         public static final AbstractBlock.Properties CONGLOMERATE = AbstractBlock.Properties.from(Blocks.STONE);
         public static final AbstractBlock.Properties SHALE = AbstractBlock.Properties.from(Blocks.STONE);
 
         public static final AbstractBlock.Properties SEA_ALGAE = AbstractBlock.Properties.create(Material.OCEAN_PLANT, MaterialColor.LIME).zeroHardnessAndResistance().sound(SoundType.PLANT).notSolid().doesNotBlockMovement();
         public static final AbstractBlock.Properties ULVA = AbstractBlock.Properties.create(Material.OCEAN_PLANT, MaterialColor.LIME).zeroHardnessAndResistance().sound(SoundType.PLANT).notSolid().doesNotBlockMovement();
+
+        public static final AbstractBlock.Properties STARFIS = ULVA; // i don't even fucking know anymore
     }
 }
