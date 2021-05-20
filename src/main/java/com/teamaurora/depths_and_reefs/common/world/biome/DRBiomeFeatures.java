@@ -52,6 +52,7 @@ public class DRBiomeFeatures {
         spawns.withSpawner(EntityClassification.WATER_AMBIENT, new MobSpawnInfo.Spawners(EntityType.TROPICAL_FISH, 20, 8, 8))
                 .withSpawner(EntityClassification.WATER_CREATURE, new MobSpawnInfo.Spawners(EntityType.DOLPHIN, 2, 1, 2))
                 .withSpawner(EntityClassification.WATER_CREATURE, new MobSpawnInfo.Spawners(EntityType.TURTLE, 10, 1, 4));
+        // TODO: Mixin to WorldEntitySpawner.func_234975_a_ to make it so turtles can spawn underwater as well
     }
 
     private static void addBaseOceanFeatures(BiomeGenerationSettingsBuilder builder, boolean hasOceanMonument, boolean isWarmOcean, boolean isDeepVariant) {

@@ -1,16 +1,23 @@
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url = "https://repo.spongepowered.org/repository/maven-public/" }
         jcenter()
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: 'org.spongepowered.mixin'
+
+mixin {
+    add sourceSets.main, "depths_and_reefs.refmap.json"
+}
 
 version = "${minecraft_version}-${mod_version}"
 group = 'com.teamaurora.depths_and_reefs'
@@ -29,6 +36,7 @@ minecraft {
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
             property 'mixin.env.disableRefMap', 'true'
+            arg "-mixin.config=depths_and_reefs.mixins.json"
 
             mods {
                 depths_and_reefs {
@@ -43,6 +51,7 @@ minecraft {
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
             property 'mixin.env.disableRefMap', 'true'
+            arg "-mixin.config=depths_and_reefs.mixins.json"
 
             mods {
                 depths_and_reefs {
@@ -77,7 +86,8 @@ jar {
                 "Implementation-Title": project.name,
                 "Implementation-Version": "${version}",
                 "Implementation-Vendor": "Team Aurora",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                "MixinConfigs": "depths_and_reefs.mixins.json"
         ])
     }
 }
