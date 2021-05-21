@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.Mod;
 public class DRBiomes {
     private static final BiomeSubRegistryHelper HELPER = DepthsAndReefs.REGISTRY_HELPER.getBiomeSubHelper();
 
-    public static final BiomeSubRegistryHelper.KeyedBiome SEAGRASS_BEDS = HELPER.createBiome("seagrass_beds", DRBiomes::makeSeagrassBedsBiome);
+    public static final BiomeSubRegistryHelper.KeyedBiome SEAGRASS_BEDS = HELPER.createBiome("seagrass_beds", () -> makeSeagrassBedsBiome());
 
     public static void addHillBiomes() {
         //BiomeUtil.addHillBiome(Biomes.LUKEWARM_OCEAN, Pair.of(SEAGRASS_BEDS.getKey(), 1));
