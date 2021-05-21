@@ -5,6 +5,7 @@
   "minVersion": "0.8",
   "refmap": "depths_and_reefs.refmap.json",
   "mixins": [
+    "WorldEntitySpawnerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
