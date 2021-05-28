@@ -7,6 +7,7 @@ import net.minecraft.util.Util;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeRegistry;
+import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.provider.OverworldBiomeProvider;
 import net.minecraft.world.gen.ImprovedNoiseGenerator;
 import net.minecraft.world.gen.layer.Layer;
@@ -75,6 +76,19 @@ public class OverworldBiomeProviderMixin {
         float sbThres = 0.44F;
 
         if (isOceanBiome) {
+            for (int x = -4; x <= 4; x++) {
+                for (int z = -4; z <= 4; z++) {
+                    if (Math.sqrt(x*x + z*z) <= 4) {
+                        if (this.genBiomes.func_242936_a(this.lookupRegistry, biomeX + x, biomeZ + z) == getBiomeFromKey(Biomes.RIVER)) {
+                            return this.lookupRegistry.getValueForKey(Biomes.RIVER);
+                        }
+                        if (this.genBiomes.func_242936_a(this.lookupRegistry, biomeX + x, biomeZ + z) == getBiomeFromKey(Biomes.BEACH)) {
+                            return this.lookupRegistry.getValueForKey(Biomes.BEACH);
+                        }
+                    }
+                }
+            }
+
             if (this.seagrassBedsNoise.func_215456_a(biomeX / sbFreq, 0, biomeZ / sbFreq, 0.0, 0.0) > sbThres) {
                 return this.lookupRegistry.getValueForKey(DRBiomes.SEAGRASS_BEDS.getKey());
             }

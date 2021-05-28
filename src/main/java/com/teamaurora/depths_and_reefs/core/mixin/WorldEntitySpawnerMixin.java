@@ -18,7 +18,6 @@ public class WorldEntitySpawnerMixin {
     private static void canCreatureTypeSpawnAtLocation(EntitySpawnPlacementRegistry.PlacementType placeType, IWorldReader worldIn, BlockPos pos, @Nullable EntityType<?> entityTypeIn, CallbackInfoReturnable<Boolean> ci) {
         if (entityTypeIn == EntityType.TURTLE && placeType == EntitySpawnPlacementRegistry.PlacementType.ON_GROUND && WorldEntitySpawner.canCreatureTypeSpawnAtLocation(EntitySpawnPlacementRegistry.PlacementType.IN_WATER, worldIn, pos, entityTypeIn)) {
             ci.setReturnValue(true);
-            ci.cancel();
         }
     }
 }
