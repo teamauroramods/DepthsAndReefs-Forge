@@ -72,18 +72,21 @@ public class OverworldBiomeProviderMixin {
         Biome defaultBiome = this.genBiomes.func_242936_a(this.lookupRegistry, biomeX, biomeZ);
         boolean isOceanBiome = defaultBiome.getCategory() == Biome.Category.OCEAN;
 
-        double sbFreq = 55.0;
+        double sbFreq = 70.0;
         float sbThres = 0.44F;
 
         if (isOceanBiome) {
-            for (int x = -4; x <= 4; x++) {
-                for (int z = -4; z <= 4; z++) {
-                    if (Math.sqrt(x*x + z*z) <= 4) {
+            for (int x = -6; x <= 6; x++) {
+                for (int z = -6; z <= 6; z++) {
+                    if (Math.sqrt(x*x + z*z) <= 6) {
                         if (this.genBiomes.func_242936_a(this.lookupRegistry, biomeX + x, biomeZ + z) == getBiomeFromKey(Biomes.RIVER)) {
                             return this.lookupRegistry.getValueForKey(Biomes.RIVER);
                         }
                         if (this.genBiomes.func_242936_a(this.lookupRegistry, biomeX + x, biomeZ + z) == getBiomeFromKey(Biomes.BEACH)) {
                             return this.lookupRegistry.getValueForKey(Biomes.BEACH);
+                        }
+                        if (this.genBiomes.func_242936_a(this.lookupRegistry, biomeX + x, biomeZ + z) == getBiomeFromKey(Biomes.SNOWY_BEACH)) {
+                            return this.lookupRegistry.getValueForKey(Biomes.SNOWY_BEACH);
                         }
                     }
                 }

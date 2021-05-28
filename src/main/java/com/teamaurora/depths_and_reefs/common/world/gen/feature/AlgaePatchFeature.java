@@ -26,10 +26,10 @@ public class AlgaePatchFeature extends Feature<NoFeatureConfig> {
                 for (int z = -2; z <= 2; z++) {
                     BlockPos pos = position.add(x, y, z);
                     if (Math.abs(x) != 2 || Math.abs(z) != 2) {
-                        if (worldIn.getBlockState(pos).isIn(Blocks.SAND)) {
+                        if (worldIn.getBlockState(pos).isIn(Blocks.SAND) && worldIn.getBlockState(pos.up()).isIn(Blocks.WATER)) {
                             count++;
                             worldIn.setBlockState(pos, DRBlocks.SEA_ALGAE_SAND.get().getDefaultState(), 3);
-                            if (worldIn.getBlockState(pos.up()).isIn(Blocks.WATER) && rand.nextInt(4) != 0) {
+                            if (rand.nextInt(4) != 0) {
                                 if (rand.nextInt(10) != 0) {
                                     // sea algae
                                     worldIn.setBlockState(pos.up(), DRBlocks.SEA_ALGAE.get().getDefaultState().with(SeaAlgaeBlock.WATERLOGGED, true), 3);

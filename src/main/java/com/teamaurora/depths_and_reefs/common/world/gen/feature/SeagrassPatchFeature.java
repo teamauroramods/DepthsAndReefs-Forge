@@ -28,10 +28,10 @@ public class SeagrassPatchFeature extends Feature<NoFeatureConfig> {
                 for (int z = -3; z <= 3; z++) {
                     BlockPos pos = position.add(x, y, z);
                     if ((Math.abs(x) != 3 || Math.abs(z) != 3) && !((Math.abs(x) == 3 && Math.abs(z) == 2) || (Math.abs(x) == 2 && Math.abs(z) == 3))) {
-                        if (worldIn.getBlockState(pos).isIn(Blocks.SAND)) {
+                        if (worldIn.getBlockState(pos).isIn(Blocks.SAND) && worldIn.getBlockState(pos.up()).isIn(Blocks.WATER)) {
                             count++;
                             worldIn.setBlockState(pos, DRBlocks.SEAGRASS_PATCH.get().getDefaultState(), 3);
-                            if (worldIn.getBlockState(pos.up()).isIn(Blocks.WATER) && rand.nextInt(4) != 0) {
+                            if (rand.nextInt(4) != 0) {
                                 if (rand.nextInt(12) == 0) {
                                     // sea algae
                                     worldIn.setBlockState(pos.up(), DRBlocks.SEA_ALGAE.get().getDefaultState().with(SeaAlgaeBlock.WATERLOGGED, true), 3);

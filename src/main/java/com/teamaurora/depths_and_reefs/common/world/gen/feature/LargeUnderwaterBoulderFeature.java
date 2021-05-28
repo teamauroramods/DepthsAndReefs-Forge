@@ -12,8 +12,8 @@ import net.minecraft.world.gen.feature.Feature;
 
 import java.util.Random;
 
-public class LargeBoulderFeature extends Feature<BlockStateFeatureConfig> {
-    public LargeBoulderFeature(Codec<BlockStateFeatureConfig> codec) {
+public class LargeUnderwaterBoulderFeature extends Feature<BlockStateFeatureConfig> {
+    public LargeUnderwaterBoulderFeature(Codec<BlockStateFeatureConfig> codec) {
         super(codec);
     }
 
@@ -33,7 +33,7 @@ public class LargeBoulderFeature extends Feature<BlockStateFeatureConfig> {
 
     private int generateSmallBoulder(ISeedReader worldIn, Random rand, BlockPos pos, BlockState state) {
         int count = 0;
-        if (worldIn.getBlockState(pos.up()).isIn(Blocks.AIR)) {
+        if (worldIn.getBlockState(pos.up()).isIn(Blocks.WATER) || worldIn.getBlockState(pos.up()).isIn(Blocks.AIR)) {
             worldIn.setBlockState(pos.up(), state, 3);
             count++;
         }
@@ -41,11 +41,11 @@ public class LargeBoulderFeature extends Feature<BlockStateFeatureConfig> {
             for (int z = -1; z <= 1; z++) {
                 if ((x == 0 && z == 0) || ((x == 0 || z == 0) && rand.nextInt(4) != 0) || rand.nextInt(4) == 0) {
                     BlockPos newPos = pos.add(x, 0, z);
-                    if (worldIn.getBlockState(newPos).isIn(Blocks.AIR)) {
+                    if (worldIn.getBlockState(newPos).isIn(Blocks.WATER) || worldIn.getBlockState(newPos).isIn(Blocks.AIR)) {
                         worldIn.setBlockState(newPos, state, 3);
                         count++;
                     }
-                    if (worldIn.getBlockState(newPos.down()).isIn(Blocks.AIR)) {
+                    if (worldIn.getBlockState(newPos.down()).isIn(Blocks.WATER) || worldIn.getBlockState(newPos.down()).isIn(Blocks.AIR)) {
                         worldIn.setBlockState(newPos.down(), state, 3);
                         count++;
                     }
