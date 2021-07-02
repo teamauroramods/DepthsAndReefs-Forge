@@ -1,10 +1,7 @@
 package com.teamaurora.depths_and_reefs.core.registry;
 
 import com.minecraftabnormals.abnormals_core.core.util.registry.BlockSubRegistryHelper;
-import com.teamaurora.depths_and_reefs.common.block.StarfishBlock;
-import com.teamaurora.depths_and_reefs.common.block.UlvaCarpetBlock;
-import com.teamaurora.depths_and_reefs.common.block.SeaAlgaeBlock;
-import com.teamaurora.depths_and_reefs.common.block.UlvaBushBlock;
+import com.teamaurora.depths_and_reefs.common.block.*;
 import com.teamaurora.depths_and_reefs.core.DepthsAndReefs;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -29,8 +26,8 @@ public class DRBlocks {
     public static final RegistryObject<Block> TIDE_SHALE = HELPER.createBlock("tide_shale", ()->new Block(Properties.SHALE), ItemGroup.BUILDING_BLOCKS);
 
     // algae & seagrass
-    public static final RegistryObject<Block> SEAGRASS_PATCH = HELPER.createBlock("seagrass_patch", ()->new Block(AbstractBlock.Properties.from(Blocks.SAND)), ItemGroup.BUILDING_BLOCKS);
-    public static final RegistryObject<Block> SEA_ALGAE_SAND = HELPER.createBlock("sea_algae_sand", ()->new Block(AbstractBlock.Properties.from(Blocks.SAND)), ItemGroup.BUILDING_BLOCKS);
+    public static final RegistryObject<Block> SEAGRASS_PATCH = HELPER.createBlock("seagrass_patch", ()->new GrassySandBlock(AbstractBlock.Properties.from(Blocks.SAND)), ItemGroup.BUILDING_BLOCKS);
+    public static final RegistryObject<Block> SEA_ALGAE_SAND = HELPER.createBlock("sea_algae_sand", ()->new GrassySandBlock(AbstractBlock.Properties.from(Blocks.SAND)), ItemGroup.BUILDING_BLOCKS);
     public static final RegistryObject<Block> SEA_ALGAE = HELPER.createBlock("sea_algae", ()->new SeaAlgaeBlock(Properties.SEA_ALGAE), ItemGroup.DECORATIONS);
 
     // ulva

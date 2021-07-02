@@ -64,6 +64,10 @@ public class DRBiomeFeatures {
         if (DataUtil.matchesKeys(biomeName, DRBiomes.SEAGRASS_BEDS.getKey())) {
             withSeagrassBedsFeatures(event.getGeneration(), event.getSpawns());
         }
+
+        if (DataUtil.matchesKeys(biomeName, DRBiomes.TIDE_POOLS.getKey())) {
+            withTidePoolsFeatures(event.getGeneration(), event.getSpawns());
+        }
     }
 
     public static void withSeagrassBedsFeatures(BiomeGenerationSettingsBuilder builder, MobSpawnInfoBuilder spawns) {
@@ -82,6 +86,40 @@ public class DRBiomeFeatures {
                 .withSpawner(EntityClassification.WATER_CREATURE, new MobSpawnInfo.Spawners(EntityType.DOLPHIN, 2, 1, 2))
                 .withSpawner(EntityClassification.WATER_CREATURE, new MobSpawnInfo.Spawners(EntityType.TURTLE, 10, 1, 4));
         // TODO: Mixin to WorldEntitySpawner.func_234975_a_ to make it so turtles can spawn underwater as well
+    }
+
+    public static void withTidePoolsFeatures(BiomeGenerationSettingsBuilder builder, MobSpawnInfoBuilder spawns) {
+        DefaultBiomeFeatures.withBatsAndHostiles(spawns);
+        builder.withStructure(StructureFeatures.MINESHAFT);
+        builder.withStructure(StructureFeatures.BURIED_TREASURE);
+        builder.withStructure(StructureFeatures.SHIPWRECK_BEACHED);
+
+        builder.withFeature(GenerationStage.Decoration.RAW_GENERATION, DRFeatures.Configured.CONGLOMERATE_TIDE_DISK);
+        builder.withFeature(GenerationStage.Decoration.RAW_GENERATION, DRFeatures.Configured.SHALE_TIDE_DISK);
+        builder.withFeature(GenerationStage.Decoration.RAW_GENERATION, DRFeatures.Configured.SAND_TIDE_DISK);
+
+        builder.withFeature(GenerationStage.Decoration.LAKES, DRFeatures.Configured.TIDE_POOL);
+
+        builder.withFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, DRFeatures.Configured.CONGLOMERATE_BOULDER_COMMON_SURFACE);
+        builder.withFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, DRFeatures.Configured.SHALE_BOULDER_COMMON_SURFACE);
+        builder.withFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, DRFeatures.Configured.TIDE_CONGLOMERATE_TIDE_DISK);
+        builder.withFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, DRFeatures.Configured.TIDE_SHALE_TIDE_DISK);
+
+        builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.SEAGRASS_RIVER);
+        builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DRFeatures.Configured.STARFISH_PATCH);
+
+        builder.withStructure(StructureFeatures.RUINED_PORTAL);
+        DefaultBiomeFeatures.withCavesAndCanyons(builder);
+        DefaultBiomeFeatures.withLavaAndWaterLakes(builder);
+        DefaultBiomeFeatures.withMonsterRoom(builder);
+        DefaultBiomeFeatures.withCommonOverworldBlocks(builder);
+        DefaultBiomeFeatures.withOverworldOres(builder);
+        DefaultBiomeFeatures.withDisks(builder);
+        DefaultBiomeFeatures.withDefaultFlowers(builder);
+        DefaultBiomeFeatures.withBadlandsGrass(builder);
+        DefaultBiomeFeatures.withNormalMushroomGeneration(builder);
+        DefaultBiomeFeatures.withLavaAndWaterSprings(builder);
+        DefaultBiomeFeatures.withFrozenTopLayer(builder);
     }
 
     private static void addBaseOceanFeatures(BiomeGenerationSettingsBuilder builder, boolean hasOceanMonument, boolean isWarmOcean, boolean isDeepVariant) {

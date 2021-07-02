@@ -19,6 +19,8 @@ public class LargeBoulderFeature extends Feature<BlockStateFeatureConfig> {
 
     @Override
     public boolean generate(ISeedReader worldIn, ChunkGenerator generator, Random rand, BlockPos pos, BlockStateFeatureConfig config) {
+        if (!worldIn.getBlockState(pos.down()).isSolid()) return false;
+
         int count = 0;
 
         count += generateSmallBoulder(worldIn, rand, pos, config.state);

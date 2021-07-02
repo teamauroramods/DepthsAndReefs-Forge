@@ -36,10 +36,16 @@ public class OverworldBiomeProviderMixin {
 
     @Unique
     private ImprovedNoiseGenerator seagrassBedsNoise;
+    @Unique
+    private ImprovedNoiseGenerator riverThiccnessNoise;
+    @Unique
+    private ImprovedNoiseGenerator tidePoolsNoise;
 
     @Inject(method = "<init>", at = @At("RETURN"))
     private void makeNoise(long seed, boolean legacyBiomeInitLayer, boolean largeBiomes, Registry<Biome> biomeRegistry, CallbackInfo ci) {
         this.seagrassBedsNoise = new ImprovedNoiseGenerator(new Random(seed));
+        this.riverThiccnessNoise = new ImprovedNoiseGenerator(new Random(seed + 69420));
+        this.tidePoolsNoise = new ImprovedNoiseGenerator(new Random(seed + 283402));
     }
 
     private Biome getBiomeFromKey(RegistryKey<Biome> key) {
@@ -72,9 +78,25 @@ public class OverworldBiomeProviderMixin {
         Biome defaultBiome = this.genBiomes.func_242936_a(this.lookupRegistry, biomeX, biomeZ);
         boolean isOceanBiome = defaultBiome.getCategory() == Biome.Category.OCEAN;
 
-        double sbFreq = 70.0;
-        float sbThres = 0.44F;
+        double sbFreq = 60.0;
+        float sbThres = 0.41F;
 
+        double rivFreq = 700.0F;
+        double rivNoiseVal = this.riverThiccnessNoise.func_215456_a(biomeX / rivFreq, 0, biomeZ / rivFreq, 0.0, 0.0);
+
+        double tpFreq = 105.0;
+        float tpThres = 0.33F;
+
+        // 1-2 OATMEAL kirby is a pink guy
+        for (int x = -2; x <= 2; x++) {
+            for (int z = -2; z <= 2; z++) {
+                if (Math.sqrt(x * x + z * z) <= 1.5 + (rivNoiseVal / 2)) {
+                    if (this.genBiomes.func_242936_a(this.lookupRegistry, biomeX + x, biomeZ + z) == getBiomeFromKey(Biomes.RIVER)) {
+                        return this.lookupRegistry.getValueForKey(Biomes.RIVER);
+                    }
+                }
+            }
+        }
         if (isOceanBiome) {
             for (int x = -6; x <= 6; x++) {
                 for (int z = -6; z <= 6; z++) {
@@ -83,6 +105,9 @@ public class OverworldBiomeProviderMixin {
                             return this.lookupRegistry.getValueForKey(Biomes.RIVER);
                         }
                         if (this.genBiomes.func_242936_a(this.lookupRegistry, biomeX + x, biomeZ + z) == getBiomeFromKey(Biomes.BEACH)) {
+                            if (this.tidePoolsNoise.func_215456_a(biomeX / tpFreq, 0, biomeZ / tpFreq, 0.0, 0.0) > tpThres) {
+                                return this.lookupRegistry.getValueForKey(DRBiomes.TIDE_POOLS.getKey());
+                            }
                             return this.lookupRegistry.getValueForKey(Biomes.BEACH);
                         }
                         if (this.genBiomes.func_242936_a(this.lookupRegistry, biomeX + x, biomeZ + z) == getBiomeFromKey(Biomes.SNOWY_BEACH)) {
@@ -94,6 +119,12 @@ public class OverworldBiomeProviderMixin {
 
             if (this.seagrassBedsNoise.func_215456_a(biomeX / sbFreq, 0, biomeZ / sbFreq, 0.0, 0.0) > sbThres) {
                 return this.lookupRegistry.getValueForKey(DRBiomes.SEAGRASS_BEDS.getKey());
+            }
+        }
+
+        if (defaultBiome == getBiomeFromKey(Biomes.BEACH)) {
+            if (this.tidePoolsNoise.func_215456_a(biomeX / tpFreq, 0, biomeZ / tpFreq, 0.0, 0.0) > tpThres) {
+                return this.lookupRegistry.getValueForKey(DRBiomes.TIDE_POOLS.getKey());
             }
         }
 

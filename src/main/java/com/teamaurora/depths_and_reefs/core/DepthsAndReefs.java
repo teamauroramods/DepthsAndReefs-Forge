@@ -3,6 +3,7 @@ package com.teamaurora.depths_and_reefs.core;
 import com.minecraftabnormals.abnormals_core.core.util.registry.RegistryHelper;
 import com.teamaurora.depths_and_reefs.core.registry.DRBiomes;
 import com.teamaurora.depths_and_reefs.core.registry.DRFeatures;
+import com.teamaurora.depths_and_reefs.core.registry.DRSurfaceBuilders;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -29,6 +30,7 @@ public class DepthsAndReefs
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             DRFeatures.Configured.registerConfiguredFeatures();
+            DRSurfaceBuilders.Configured.registerConfiguredSurfaceBuilders();
             DRBiomes.addBiomeTypes();
             DRBiomes.addHillBiomes();
         });

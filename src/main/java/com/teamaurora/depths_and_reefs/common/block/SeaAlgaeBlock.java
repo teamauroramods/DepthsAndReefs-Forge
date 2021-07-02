@@ -34,13 +34,13 @@ public class SeaAlgaeBlock extends BushBlock implements IWaterLoggable {
 
     @Override
     protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return state.isIn(Blocks.SAND) || state.isIn(DRBlocks.SEA_ALGAE_SAND.get()) || (state.isSolidSide(worldIn, pos, Direction.UP) && !state.isIn(Blocks.MAGMA_BLOCK));
+        return state.isSolid();
     }
 
     @Override
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
         BlockState stateDown = worldIn.getBlockState(pos.down());
-        return stateDown.isIn(Blocks.SAND) || stateDown.isIn(DRBlocks.SEA_ALGAE_SAND.get()) || (stateDown.isSolidSide(worldIn, pos, Direction.UP) && !stateDown.isIn(Blocks.MAGMA_BLOCK));
+        return stateDown.isIn(Blocks.SAND) || stateDown.isIn(DRBlocks.SEA_ALGAE_SAND.get()) || (stateDown.isSolid() && state.get(WATERLOGGED));
     }
 
     @Override
@@ -59,13 +59,13 @@ public class SeaAlgaeBlock extends BushBlock implements IWaterLoggable {
     @Override
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        BlockState blockstate1 = this.getDefaultState();
         IWorldReader iworldreader = context.getWorld();
         BlockPos blockpos = context.getPos();
         FluidState fluidstate = context.getWorld().getFluidState(context.getPos());
+        BlockState blockstate1 = this.getDefaultState().with(WATERLOGGED, fluidstate.getFluid() == Fluids.WATER);
 
         if (blockstate1.isValidPosition(iworldreader, blockpos)) {
-            return blockstate1.with(WATERLOGGED, fluidstate.getFluid() == Fluids.WATER);
+            return blockstate1;
         }
 
         return null;

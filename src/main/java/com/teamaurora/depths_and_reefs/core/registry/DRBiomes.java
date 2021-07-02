@@ -19,6 +19,7 @@ public class DRBiomes {
     private static final BiomeSubRegistryHelper HELPER = DepthsAndReefs.REGISTRY_HELPER.getBiomeSubHelper();
 
     public static final BiomeSubRegistryHelper.KeyedBiome SEAGRASS_BEDS = HELPER.createBiome("seagrass_beds", () -> makeSeagrassBedsBiome());
+    public static final BiomeSubRegistryHelper.KeyedBiome TIDE_POOLS = HELPER.createBiome("tide_pools", () -> makeTidePoolsBiome());
 
     public static void addHillBiomes() {
         //BiomeUtil.addHillBiome(Biomes.LUKEWARM_OCEAN, Pair.of(SEAGRASS_BEDS.getKey(), 1));
@@ -26,6 +27,7 @@ public class DRBiomes {
 
     public static void addBiomeTypes() {
         BiomeDictionary.addTypes(SEAGRASS_BEDS.getKey(), BiomeDictionary.Type.WET, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.OCEAN, BiomeDictionary.Type.OVERWORLD);
+        BiomeDictionary.addTypes(TIDE_POOLS.getKey(), BiomeDictionary.Type.WET, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.BEACH, BiomeDictionary.Type.OVERWORLD);
     }
 
     private static Biome makeSeagrassBedsBiome() {
@@ -47,6 +49,27 @@ public class DRBiomes {
                         .withGenerationSettings((new BiomeGenerationSettings.Builder())
                                 .withSurfaceBuilder(ConfiguredSurfaceBuilders.field_244185_q)
                                 .build()).build();
+    }
+
+    private static Biome makeTidePoolsBiome() {
+        return (new Biome.Builder())
+                .precipitation(Biome.RainType.RAIN)
+                .category(Biome.Category.BEACH)
+                .depth(0.0F)
+                .scale(0.005F)
+                .temperature(0.8F)
+                .downfall(0.5F)
+                .setEffects((new BiomeAmbience.Builder())
+                        .setWaterColor(4566514)
+                        .setWaterFogColor(267827)
+                        .setFogColor(12638463)
+                        .withSkyColor(getSkyColorWithTemperatureModifier(0.8F))
+                        .setMoodSound(MoodSoundAmbience.DEFAULT_CAVE)
+                        .build())
+                .withMobSpawnSettings(new MobSpawnInfo.Builder().copy())
+                .withGenerationSettings((new BiomeGenerationSettings.Builder())
+                        .withSurfaceBuilder(DRSurfaceBuilders.Configured.TIDE_POOLS)
+                        .build()).build();
     }
 
     // funni vanilla copy pastes
