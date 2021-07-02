@@ -40,7 +40,7 @@ public class SeaAlgaeBlock extends BushBlock implements IWaterLoggable {
     @Override
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
         BlockState stateDown = worldIn.getBlockState(pos.down());
-        return stateDown.isIn(Blocks.SAND) || stateDown.isIn(DRBlocks.SEA_ALGAE_SAND.get()) || (stateDown.isSolid() && state.get(WATERLOGGED));
+        return stateDown.isIn(DRBlocks.SEA_ALGAE_SAND.get()) || (stateDown.isSolid() && state.get(WATERLOGGED));
     }
 
     @Override

@@ -32,7 +32,7 @@ public class DRBlocks {
 
     // ulva
     public static final RegistryObject<Block> ULVA_BUSH = HELPER.createBlockNoItem("ulva_bush", ()->new UlvaBushBlock(Properties.ULVA));
-    public static final RegistryObject<Block> ULVA_CARPET = HELPER.createBlock("ulva_carpet", ()->new UlvaCarpetBlock(Properties.ULVA), ItemGroup.DECORATIONS);
+    public static final RegistryObject<Block> ULVA_CARPET = HELPER.createBlockNoItem("ulva_carpet", ()->new UlvaCarpetBlock(Properties.ULVA));
 
     // starshit
     public static final RegistryObject<Block> RED_STARFISH = HELPER.createBlock("red_starfish", ()->new StarfishBlock(Properties.STARFIS), ItemGroup.DECORATIONS);

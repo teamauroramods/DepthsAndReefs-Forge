@@ -1,11 +1,13 @@
 package com.teamaurora.depths_and_reefs.common.block;
 
 import com.teamaurora.depths_and_reefs.core.registry.DRBlocks;
+import com.teamaurora.depths_and_reefs.core.registry.DRItems;
 import net.minecraft.block.*;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -65,5 +67,10 @@ public class UlvaBushBlock extends BushBlock {
     @Override
     public FluidState getFluidState(BlockState state) {
         return Fluids.WATER.getStillFluidState(false);
+    }
+
+    @Override
+    public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state) {
+        return new ItemStack(DRItems.ULVA.get());
     }
 }

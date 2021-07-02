@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.Mod;
 public class DRItems {
     public static final ItemSubRegistryHelper HELPER = DepthsAndReefs.REGISTRY_HELPER.getItemSubHelper();
 
-    public static final RegistryObject<Item> ULVA = HELPER.createItem("ulva", ()->new BlockNamedItem(DRBlocks.ULVA_BUSH.get(), new Item.Properties().group(ItemGroup.MISC)));
+    public static final RegistryObject<Item> ULVA = HELPER.createItem("ulva", ()->new BlockNamedItem(DRBlocks.ULVA_CARPET.get(), new Item.Properties().group(ItemGroup.MISC)));
     public static final RegistryObject<Item> DRIED_ULVA = HELPER.createItem("dried_ulva", ()->new Item(new Item.Properties().group(ItemGroup.FOOD).food(Foods.DRIED_ULVA)));
 
     public static class Foods {
