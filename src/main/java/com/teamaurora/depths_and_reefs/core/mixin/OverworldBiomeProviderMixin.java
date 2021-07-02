@@ -78,7 +78,7 @@ public class OverworldBiomeProviderMixin {
         Biome defaultBiome = this.genBiomes.func_242936_a(this.lookupRegistry, biomeX, biomeZ);
         boolean isOceanBiome = defaultBiome.getCategory() == Biome.Category.OCEAN;
 
-        double sbFreq = 60.0;
+        double sbFreq = 95.0;
         float sbThres = 0.41F;
 
         double rivFreq = 700.0F;
@@ -117,7 +117,7 @@ public class OverworldBiomeProviderMixin {
                 }
             }
 
-            if (this.seagrassBedsNoise.func_215456_a(biomeX / sbFreq, 0, biomeZ / sbFreq, 0.0, 0.0) > sbThres) {
+            if (this.seagrassBedsNoise.func_215456_a(biomeX / sbFreq, 0, biomeZ / sbFreq, 0.0, 0.0) > sbThres && getBiomesFromKeys(ImmutableList.of(Biomes.LUKEWARM_OCEAN, Biomes.DEEP_LUKEWARM_OCEAN, Biomes.WARM_OCEAN)).contains(defaultBiome)) {
                 return this.lookupRegistry.getValueForKey(DRBiomes.SEAGRASS_BEDS.getKey());
             }
         }

@@ -79,6 +79,9 @@ public class DRBiomeFeatures {
         builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DRFeatures.Configured.SMALL_KELP_DECORATED);
         builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, DRFeatures.Configured.SPARSE_SEAGRASS);
         builder.withFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, DRFeatures.Configured.CONGLOMERATE_BOULDER_COMMON);
+
+        builder.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.SEA_PICKLE);
+
         DefaultBiomeFeatures.withFrozenTopLayer(builder);
 
         DefaultBiomeFeatures.withOceanMobs(spawns, 5, 2, 10);
