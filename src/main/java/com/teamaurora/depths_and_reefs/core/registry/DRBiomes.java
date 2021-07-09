@@ -19,7 +19,8 @@ public class DRBiomes {
     private static final BiomeSubRegistryHelper HELPER = DepthsAndReefs.REGISTRY_HELPER.getBiomeSubHelper();
 
     public static final BiomeSubRegistryHelper.KeyedBiome SEAGRASS_BEDS = HELPER.createBiome("seagrass_beds", () -> makeSeagrassBedsBiome());
-    public static final BiomeSubRegistryHelper.KeyedBiome TIDE_POOLS = HELPER.createBiome("tide_pools", () -> makeTidePoolsBiome());
+    public static final BiomeSubRegistryHelper.KeyedBiome TIDE_POOLS = HELPER.createBiome("tide_pools", () -> makeTidePoolsBiome(false));
+    public static final BiomeSubRegistryHelper.KeyedBiome SANDY_TIDE_POOLS = HELPER.createBiome("sandy_tide_pools", () -> makeTidePoolsBiome(true));
 
     public static void addHillBiomes() {
         //BiomeUtil.addHillBiome(Biomes.LUKEWARM_OCEAN, Pair.of(SEAGRASS_BEDS.getKey(), 1));
@@ -28,6 +29,7 @@ public class DRBiomes {
     public static void addBiomeTypes() {
         BiomeDictionary.addTypes(SEAGRASS_BEDS.getKey(), BiomeDictionary.Type.WET, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.OCEAN, BiomeDictionary.Type.OVERWORLD);
         BiomeDictionary.addTypes(TIDE_POOLS.getKey(), BiomeDictionary.Type.WET, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.BEACH, BiomeDictionary.Type.OVERWORLD);
+        BiomeDictionary.addTypes(SANDY_TIDE_POOLS.getKey(), BiomeDictionary.Type.WET, BiomeDictionary.Type.LUSH, BiomeDictionary.Type.BEACH, BiomeDictionary.Type.OVERWORLD);
     }
 
     private static Biome makeSeagrassBedsBiome() {
@@ -51,7 +53,7 @@ public class DRBiomes {
                                 .build()).build();
     }
 
-    private static Biome makeTidePoolsBiome() {
+    private static Biome makeTidePoolsBiome(boolean sandy) {
         return (new Biome.Builder())
                 .precipitation(Biome.RainType.RAIN)
                 .category(Biome.Category.BEACH)
@@ -68,7 +70,7 @@ public class DRBiomes {
                         .build())
                 .withMobSpawnSettings(new MobSpawnInfo.Builder().copy())
                 .withGenerationSettings((new BiomeGenerationSettings.Builder())
-                        .withSurfaceBuilder(DRSurfaceBuilders.Configured.TIDE_POOLS)
+                        .withSurfaceBuilder(sandy ? ConfiguredSurfaceBuilders.field_244176_h : DRSurfaceBuilders.Configured.TIDE_POOLS)
                         .build()).build();
     }
 

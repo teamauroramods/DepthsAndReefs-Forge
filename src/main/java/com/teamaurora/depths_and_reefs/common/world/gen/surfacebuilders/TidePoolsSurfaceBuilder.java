@@ -20,7 +20,7 @@ public class TidePoolsSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig
         if (noise > 0.35D) {
             SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, DRSurfaceBuilders.Configs.TIDE_POOL_SHALE);
         } else if (noise > -0.35D) {
-            SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, SurfaceBuilder.SAND_CONFIG);
+            SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, SurfaceBuilder.GRAVEL_CONFIG);
         } else {
             SurfaceBuilder.DEFAULT.buildSurface(random, chunkIn, biomeIn, x, z, startHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, DRSurfaceBuilders.Configs.TIDE_POOL_CONGLOMERATE);
         }

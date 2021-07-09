@@ -25,11 +25,11 @@ public class TidePoolFeature extends Feature<NoFeatureConfig> {
 
         for (int x = -2; x <= 2; x++) {
             for (int z = -2; z <= 2; z++) {
-                if (rand.nextInt(10) == 0) {
+                if (rand.nextInt(7) == 0) {
                     int radius = rand.nextInt(3) + 1;
                     for (int x2 = -radius; x2 <= radius; x2++) {
                         for (int z2 = -radius; z2 <= radius; z2++) {
-                            if (Math.sqrt(x2*x2+z2*z2) < radius && safeWaterPlace(world, rand, pos.add(x+x2, -1, z+z2))) {
+                            if (Math.sqrt(x2*x2+z2*z2) < radius && rand.nextInt(5) <= 2 && safeWaterPlace(world, rand, pos.add(x+x2, -1, z+z2))) {
                                 i++;
                             }
                         }
@@ -57,10 +57,12 @@ public class TidePoolFeature extends Feature<NoFeatureConfig> {
         world.setBlockState(pos, Blocks.WATER.getDefaultState(), 3);
 
         for (BlockPos pos2 : positions) {
-            if (world.getBlockState(pos2).getBlock() == DRBlocks.CONGLOMERATE.get() && rand.nextBoolean()) {
-                world.setBlockState(pos2, DRBlocks.TIDE_CONGLOMERATE.get().getDefaultState(), 3);
-            } else if (world.getBlockState(pos2).getBlock() == DRBlocks.SHALE.get() && rand.nextBoolean()) {
-                world.setBlockState(pos2, DRBlocks.SHALE.get().getDefaultState(), 3);
+            if (!world.isAirBlock(pos2) && !world.getBlockState(pos2).isIn(Blocks.WATER)) {
+                if (rand.nextBoolean()) {
+                    world.setBlockState(pos2, DRBlocks.TIDE_CONGLOMERATE.get().getDefaultState(), 3);
+                } else {
+                    world.setBlockState(pos2, DRBlocks.CONGLOMERATE.get().getDefaultState(), 3);
+                }
             }
         }
 

@@ -40,12 +40,15 @@ public class OverworldBiomeProviderMixin {
     private ImprovedNoiseGenerator riverThiccnessNoise;
     @Unique
     private ImprovedNoiseGenerator tidePoolsNoise;
+    @Unique
+    private ImprovedNoiseGenerator sandyTidePoolsNoise;
 
     @Inject(method = "<init>", at = @At("RETURN"))
     private void makeNoise(long seed, boolean legacyBiomeInitLayer, boolean largeBiomes, Registry<Biome> biomeRegistry, CallbackInfo ci) {
         this.seagrassBedsNoise = new ImprovedNoiseGenerator(new Random(seed));
         this.riverThiccnessNoise = new ImprovedNoiseGenerator(new Random(seed + 69420));
         this.tidePoolsNoise = new ImprovedNoiseGenerator(new Random(seed + 283402));
+        this.sandyTidePoolsNoise = new ImprovedNoiseGenerator(new Random(seed + 948573));
     }
 
     private Biome getBiomeFromKey(RegistryKey<Biome> key) {
@@ -86,6 +89,8 @@ public class OverworldBiomeProviderMixin {
 
         double tpFreq = 105.0;
         float tpThres = 0.33F;
+        double stpFreq = 130.0;
+        float stpThres = 0.36F;
 
         // 1-2 OATMEAL kirby is a pink guy
         for (int x = -2; x <= 2; x++) {
@@ -107,6 +112,8 @@ public class OverworldBiomeProviderMixin {
                         if (this.genBiomes.func_242936_a(this.lookupRegistry, biomeX + x, biomeZ + z) == getBiomeFromKey(Biomes.BEACH)) {
                             if (this.tidePoolsNoise.func_215456_a(biomeX / tpFreq, 0, biomeZ / tpFreq, 0.0, 0.0) > tpThres) {
                                 return this.lookupRegistry.getValueForKey(DRBiomes.TIDE_POOLS.getKey());
+                            } else if (this.sandyTidePoolsNoise.func_215456_a(biomeX / stpFreq, 0, biomeZ / stpFreq, 0.0, 0.0) > stpThres) {
+                                return this.lookupRegistry.getValueForKey(DRBiomes.SANDY_TIDE_POOLS.getKey());
                             }
                             return this.lookupRegistry.getValueForKey(Biomes.BEACH);
                         }
@@ -125,6 +132,8 @@ public class OverworldBiomeProviderMixin {
         if (defaultBiome == getBiomeFromKey(Biomes.BEACH)) {
             if (this.tidePoolsNoise.func_215456_a(biomeX / tpFreq, 0, biomeZ / tpFreq, 0.0, 0.0) > tpThres) {
                 return this.lookupRegistry.getValueForKey(DRBiomes.TIDE_POOLS.getKey());
+            } else if (this.sandyTidePoolsNoise.func_215456_a(biomeX / stpFreq, 0, biomeZ / stpFreq, 0.0, 0.0) > stpThres) {
+                return this.lookupRegistry.getValueForKey(DRBiomes.SANDY_TIDE_POOLS.getKey());
             }
         }
 

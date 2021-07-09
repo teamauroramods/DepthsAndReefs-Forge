@@ -24,8 +24,8 @@ public class DRSurfaceBuilders {
     }
 
     public static final class Configs {
-        public static final SurfaceBuilderConfig TIDE_POOL_SHALE = new SurfaceBuilderConfig(DRBlocks.SHALE.get().getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.SAND.getDefaultState());
-        public static final SurfaceBuilderConfig TIDE_POOL_CONGLOMERATE = new SurfaceBuilderConfig(DRBlocks.CONGLOMERATE.get().getDefaultState(), Blocks.SAND.getDefaultState(), Blocks.SAND.getDefaultState());
+        public static final SurfaceBuilderConfig TIDE_POOL_SHALE = new SurfaceBuilderConfig(DRBlocks.SHALE.get().getDefaultState(), Blocks.GRAVEL.getDefaultState(), Blocks.GRAVEL.getDefaultState());
+        public static final SurfaceBuilderConfig TIDE_POOL_CONGLOMERATE = new SurfaceBuilderConfig(DRBlocks.CONGLOMERATE.get().getDefaultState(), Blocks.GRAVEL.getDefaultState(), Blocks.GRAVEL.getDefaultState());
     }
 
     public static final class Configured {

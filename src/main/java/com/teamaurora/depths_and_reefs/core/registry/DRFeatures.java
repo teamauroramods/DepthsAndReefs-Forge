@@ -39,6 +39,7 @@ public class DRFeatures {
 
     public static final class BlockStates {
         public static final BlockState SAND = Blocks.SAND.getDefaultState();
+        public static final BlockState GRAVEL = Blocks.GRAVEL.getDefaultState();
 
         public static final BlockState CONGLOMERATE = DRBlocks.CONGLOMERATE.get().getDefaultState();
         public static final BlockState SHALE = DRBlocks.SHALE.get().getDefaultState();
@@ -53,9 +54,10 @@ public class DRFeatures {
         public static final BlockStateFeatureConfig CONGLOMERATE_CONFIG = new BlockStateFeatureConfig(BlockStates.CONGLOMERATE);
         public static final BlockStateFeatureConfig SHALE_CONFIG = new BlockStateFeatureConfig(BlockStates.SHALE);
 
-        public static final SphereReplaceConfig CONGLOMERATE_DISK_CONFIG = new SphereReplaceConfig(BlockStates.CONGLOMERATE, FeatureSpread.func_242253_a(3, 1), 1, ImmutableList.of(BlockStates.CONGLOMERATE, BlockStates.SHALE, BlockStates.SAND));
-        public static final SphereReplaceConfig SHALE_DISK_CONFIG = new SphereReplaceConfig(BlockStates.SHALE, FeatureSpread.func_242253_a(3, 1), 1, ImmutableList.of(BlockStates.CONGLOMERATE, BlockStates.SHALE, BlockStates.SAND));
-        public static final SphereReplaceConfig SAND_DISK_CONFIG = new SphereReplaceConfig(BlockStates.SAND, FeatureSpread.func_242253_a(2, 1), 1, ImmutableList.of(BlockStates.CONGLOMERATE, BlockStates.SHALE, BlockStates.SAND));
+        public static final SphereReplaceConfig CONGLOMERATE_DISK_CONFIG = new SphereReplaceConfig(BlockStates.CONGLOMERATE, FeatureSpread.func_242253_a(3, 1), 1, ImmutableList.of(BlockStates.CONGLOMERATE, BlockStates.SHALE, BlockStates.GRAVEL));
+        public static final SphereReplaceConfig SPARSE_CONGLOMERATE_DISK_CONFIG = new SphereReplaceConfig(BlockStates.CONGLOMERATE, FeatureSpread.func_242253_a(2, 1), 1, ImmutableList.of(BlockStates.SAND));
+        public static final SphereReplaceConfig SHALE_DISK_CONFIG = new SphereReplaceConfig(BlockStates.SHALE, FeatureSpread.func_242253_a(3, 1), 1, ImmutableList.of(BlockStates.CONGLOMERATE, BlockStates.SHALE, BlockStates.GRAVEL));
+        public static final SphereReplaceConfig GRAVEL_DISK_CONFIG = new SphereReplaceConfig(BlockStates.GRAVEL, FeatureSpread.func_242253_a(2, 1), 1, ImmutableList.of(BlockStates.CONGLOMERATE, BlockStates.SHALE, BlockStates.GRAVEL));
         public static final SphereReplaceConfig TIDE_CONGLOMERATE_DISK_CONFIG = new SphereReplaceConfig(BlockStates.TIDE_CONGLOMERATE, FeatureSpread.func_242253_a(1,1), 1, ImmutableList.of(BlockStates.CONGLOMERATE));
         public static final SphereReplaceConfig TIDE_SHALE_DISK_CONFIG = new SphereReplaceConfig(BlockStates.TIDE_SHALE, FeatureSpread.func_242253_a(1,1), 1, ImmutableList.of(BlockStates.SHALE));
     }
@@ -79,6 +81,7 @@ public class DRFeatures {
 
         public static final ConfiguredFeature<BlockStateFeatureConfig, ?> CONGLOMERATE_BOULDER_SURFACE = LARGE_BOULDER_SURFACE.get().withConfiguration(Configs.CONGLOMERATE_CONFIG);
         public static final ConfiguredFeature<?, ?> CONGLOMERATE_BOULDER_SPARSE_SURFACE = CONGLOMERATE_BOULDER_SURFACE.withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT).withPlacement(Placement.CHANCE.configure(new ChanceConfig(3)));
+        public static final ConfiguredFeature<?, ?> CONGLOMERATE_BOULDER_UNCOMMON_SURFACE = CONGLOMERATE_BOULDER_SURFACE.withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 1)));
         public static final ConfiguredFeature<?, ?> CONGLOMERATE_BOULDER_COMMON_SURFACE = CONGLOMERATE_BOULDER_SURFACE.withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 0.25F, 1)));
 
         public static final ConfiguredFeature<BlockStateFeatureConfig, ?> SHALE_BOULDER_SURFACE = LARGE_BOULDER_SURFACE.get().withConfiguration(Configs.SHALE_CONFIG);
@@ -86,18 +89,21 @@ public class DRFeatures {
 
         // Tide Pools //
         public static final ConfiguredFeature<SphereReplaceConfig, ?> CONGLOMERATE_DISK = DISK.get().withConfiguration(Configs.CONGLOMERATE_DISK_CONFIG);
+        public static final ConfiguredFeature<SphereReplaceConfig, ?> CONGLOMERATE_DISK_SPARSE = DISK.get().withConfiguration(Configs.SPARSE_CONGLOMERATE_DISK_CONFIG);
         public static final ConfiguredFeature<SphereReplaceConfig, ?> SHALE_DISK = DISK.get().withConfiguration(Configs.SHALE_DISK_CONFIG);
-        public static final ConfiguredFeature<SphereReplaceConfig, ?> SAND_DISK = DISK.get().withConfiguration(Configs.SAND_DISK_CONFIG);
+        public static final ConfiguredFeature<SphereReplaceConfig, ?> GRAVEL_DISK = DISK.get().withConfiguration(Configs.GRAVEL_DISK_CONFIG);
         public static final ConfiguredFeature<SphereReplaceConfig, ?> TIDE_CONGLOMERATE_DISK = DISK.get().withConfiguration(Configs.TIDE_CONGLOMERATE_DISK_CONFIG);
         public static final ConfiguredFeature<SphereReplaceConfig, ?> TIDE_SHALE_DISK = DISK.get().withConfiguration(Configs.TIDE_SHALE_DISK_CONFIG);
 
         public static final ConfiguredFeature<?, ?> CONGLOMERATE_TIDE_DISK = CONGLOMERATE_DISK.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 0.5F, 2)));
+        public static final ConfiguredFeature<?, ?> CONGLOMERATE_TIDE_DISK_SPARSE = CONGLOMERATE_DISK_SPARSE.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.35F, 2)));
         public static final ConfiguredFeature<?, ?> SHALE_TIDE_DISK = SHALE_DISK.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 0.5F, 2)));
-        public static final ConfiguredFeature<?, ?> SAND_TIDE_DISK = SAND_DISK.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.5F, 2)));
+        public static final ConfiguredFeature<?, ?> GRAVEL_TIDE_DISK = GRAVEL_DISK.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.5F, 2)));
         public static final ConfiguredFeature<?, ?> TIDE_CONGLOMERATE_TIDE_DISK = TIDE_CONGLOMERATE_DISK.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 0.5F, 1)));
         public static final ConfiguredFeature<?, ?> TIDE_SHALE_TIDE_DISK = TIDE_SHALE_DISK.withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 0.5F, 1)));
 
         public static final ConfiguredFeature<?, ?> TIDE_POOL = DRFeatures.TIDE_POOL.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(3, 0.2F, 2)));
+        public static final ConfiguredFeature<?, ?> TIDE_POOL_SPARSE = DRFeatures.TIDE_POOL.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.2F, 2)));
         public static final ConfiguredFeature<?, ?> STARFISH_PATCH = DRFeatures.STARFISH_PATCH.get().withConfiguration(NoFeatureConfig.field_236559_b_).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 0, 0)));
 
         private static <FC extends IFeatureConfig> void register(String name, ConfiguredFeature<FC, ?> configuredFeature) {
@@ -117,6 +123,7 @@ public class DRFeatures {
             register("conglomerate_boulder_common", CONGLOMERATE_BOULDER_COMMON);
             register("conglomerate_boulder_sparse", CONGLOMERATE_BOULDER_SPARSE);
             register("conglomerate_boulder_sparse_surface", CONGLOMERATE_BOULDER_SPARSE_SURFACE);
+            register("conglomerate_boulder_uncommon_surface", CONGLOMERATE_BOULDER_UNCOMMON_SURFACE);
             register("conglomerate_boulder_common_surface", CONGLOMERATE_BOULDER_COMMON_SURFACE);
 
             register("shale_boulder_common_surface", SHALE_BOULDER_COMMON_SURFACE);
@@ -126,17 +133,20 @@ public class DRFeatures {
             register("beach_cave_filler", BEACH_CAVE_FILLER);
 
             register("conglomerate_disk", CONGLOMERATE_DISK);
+            register("conglomerate_disk_sparse", CONGLOMERATE_DISK_SPARSE);
             register("shale_disk", SHALE_DISK);
-            register("sand_disk", SAND_DISK);
+            register("gravel_disk", GRAVEL_DISK);
             register("tide_conglomerate_disk", TIDE_CONGLOMERATE_DISK);
             register("tide_shale_disk", TIDE_SHALE_DISK);
             register("conglomerate_tide_disk", CONGLOMERATE_TIDE_DISK);
+            register("conglomerate_tide_disk_sparse", CONGLOMERATE_TIDE_DISK_SPARSE);
             register("shale_tide_disk", SHALE_TIDE_DISK);
-            register("sand_tide_disk", SAND_TIDE_DISK);
+            register("gravel_tide_disk", GRAVEL_TIDE_DISK);
             register("tide_conglomerate_tide_disk", TIDE_CONGLOMERATE_TIDE_DISK);
             register("tide_shale_tide_disk", TIDE_SHALE_TIDE_DISK);
 
             register("tide_pool", TIDE_POOL);
+            register("tide_pool_sparse", TIDE_POOL_SPARSE);
         }
     }
 }
